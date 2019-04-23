@@ -17,4 +17,14 @@
               android:layout_height="wrap_content"
               android:text="Email"
               android:id="@+id/tvEmail"/>
+
+    <TextView android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="Tel. Corporativo"
+              android:id="@+id/tvPhoneWork"/>
+
+    <TextView android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:text="Tel. Celular"
+              android:id="@+id/tvPhoneMobile"/>
 </LinearLayout>

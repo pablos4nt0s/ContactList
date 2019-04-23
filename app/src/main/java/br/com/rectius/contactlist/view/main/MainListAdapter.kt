@@ -42,6 +42,8 @@ class MainListAdapter(
         ) = with(itemView) {
             tvName.text = contact.name
             tvEmail.text = contact.email
+            tvPhoneWork.text = contact.phone.work
+            tvPhoneMobile.text = contact.phone.mobile
 
             setOnClickListener { clickLista(contact) }
         }

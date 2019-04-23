@@ -26,7 +26,9 @@ class FormularioActivity : AppCompatActivity() {
         btSalvar.setOnClickListener {
             formularioViewModel.salvar(
                 inputName.editText?.text.toString(),
-                inputEmail.editText?.text.toString()
+                inputEmail.editText?.text.toString(),
+                inputPhoneWork.editText?.text.toString(),
+                inputPhoneMobile.editText?.text.toString()
             )
         }
 

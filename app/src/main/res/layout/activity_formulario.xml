@@ -31,6 +31,24 @@
                       android:hint="Email"/>
         </android.support.design.widget.TextInputLayout>
 
+        <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/inputPhoneWork">
+            <EditText android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:hint="Tel. Corporativo"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/inputPhoneMobile">
+            <EditText android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:hint="Tel. Celular"/>
+        </android.support.design.widget.TextInputLayout>
+
         <Button android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Salvar"
