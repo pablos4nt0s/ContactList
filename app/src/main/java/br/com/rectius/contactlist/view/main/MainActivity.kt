@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
             this,
             it!!
         ) {
-            Toast.makeText(this, it.name, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, it.id, Toast.LENGTH_SHORT).show()
         }
 
         rvContacts.layoutManager = LinearLayoutManager(this)
@@ -103,7 +103,10 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_refresh -> {
+                mainViewModel.buscarTodos()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
