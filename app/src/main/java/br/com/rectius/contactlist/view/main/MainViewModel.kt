@@ -16,7 +16,7 @@ class MainViewModel : ViewModel() {
 
     fun buscarTodos () {
         isLoading.value = true
-        contactRepository.buscarTodos(
+        contactRepository.getAll(
             onComplete = {
                 isLoading.value = false
                 contacts.value = it

@@ -14,7 +14,26 @@ class FormularioViewModel : ViewModel() {
 
     val isLoading: MutableLiveData<Boolean> = MutableLiveData()
 
-    fun salvar(
+    fun delete(
+        id: String
+    ) {
+        contactRepository.delete(id,
+            onComplete = {
+                isLoading.value = false
+                responseStatus.value = ResponseStatus(
+                    true,
+                    "Success!"
+                )
+            }, onError = {
+                isLoading.value = false
+                responseStatus.value = ResponseStatus(
+                    false,
+                    it?.message!!
+                )
+            })
+    }
+
+    fun save(
         id: String? = null,
         name: String,
         email: String,
@@ -24,7 +43,7 @@ class FormularioViewModel : ViewModel() {
         isLoading.value = true
         val phone = Phone(work = phoneWork, mobile = phoneMobile)
         val contact = Contact(id = id, name = name, email = email, phone = phone)
-        contactRepository.salvar(contact,
+        contactRepository.save(contact,
             onComplete = {
                 isLoading.value = false
                 responseStatus.value = ResponseStatus(

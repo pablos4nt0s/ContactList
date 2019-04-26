@@ -53,6 +53,12 @@
                 android:layout_height="wrap_content"
                 android:text="Salvar"
                 android:id="@+id/btSalvar"/>
+
+        <Button android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Remover"
+                android:background="@color/colorSecondaryText"
+                android:id="@+id/btRemover"/>
     </LinearLayout>
 
     <include layout="@layout/loading"/>

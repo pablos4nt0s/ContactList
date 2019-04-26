@@ -8,7 +8,7 @@ import retrofit2.Response
 
 class ContactRepository {
 
-    fun buscarTodos(
+    fun getAll(
         onComplete:(List<Contact>?) -> Unit,
         onError: (Throwable?) -> Unit
     ) {
@@ -24,7 +24,7 @@ class ContactRepository {
                     if(response.isSuccessful) {
                         onComplete(response.body())
                     } else {
-                        onError(Throwable("Erro ao buscar os dados"))
+                        onError(Throwable("Error retrieving data!"))
                     }
                 }
             })
@@ -32,10 +32,9 @@ class ContactRepository {
     }
 
 
-
-    fun salvar(contact: Contact,
-               onComplete: (Contact) -> Unit,
-               onError: (Throwable?) -> Unit) {
+    fun save(contact: Contact,
+             onComplete: (Contact) -> Unit,
+             onError: (Throwable?) -> Unit) {
 
         val idContact : String? = contact.id
 
@@ -74,8 +73,28 @@ class ContactRepository {
         }
     }
 
+    fun delete(idContact : String,
+               onComplete:(Void?) -> Unit,
+               onError: (Throwable?) -> Unit
+    ) {
 
+        getContactAPI()
+            .delete(idContact)
+            .enqueue(object : Callback<Void>{
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                    onError(t)
+                }
 
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                    if(response.isSuccessful) {
+                        onComplete(response.body())
+                    } else {
+                        onError(Throwable("Deleting error!"))
+                    }
+                }
+            })
+
+    }
 
 
 }

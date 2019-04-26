@@ -39,13 +39,21 @@ class FormularioActivity : AppCompatActivity() {
             .get(FormularioViewModel::class.java)
 
         btSalvar.setOnClickListener {
-            formularioViewModel.salvar(
+            formularioViewModel.save(
                 idContact,
                 inputName.editText?.text.toString(),
                 inputEmail.editText?.text.toString(),
                 inputPhoneWork.editText?.text.toString(),
                 inputPhoneMobile.editText?.text.toString()
             )
+        }
+
+        if (idContact == null) {
+            btRemover.visibility = View.INVISIBLE
+        }
+
+        btRemover.setOnClickListener {
+            formularioViewModel.delete(idContact!!)
         }
 
         registerObserver()
