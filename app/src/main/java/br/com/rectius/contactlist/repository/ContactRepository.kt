@@ -48,7 +48,11 @@ class ContactRepository {
                     }
 
                     override fun onResponse(call: Call<Contact>, response: Response<Contact>) {
-                        onComplete(response.body()!!)
+                        if(response.isSuccessful) {
+                            onComplete(response.body()!!)
+                        } else {
+                            onError(Throwable("Creation error!"))
+                        }
                     }
                 })
         } else {
@@ -60,7 +64,11 @@ class ContactRepository {
                     }
 
                     override fun onResponse(call: Call<Contact>, response: Response<Contact>) {
-                        onComplete(response.body()!!)
+                        if(response.isSuccessful) {
+                            onComplete(response.body()!!)
+                        } else {
+                            onError(Throwable("Updating error!"))
+                        }
                     }
                 })
         }
