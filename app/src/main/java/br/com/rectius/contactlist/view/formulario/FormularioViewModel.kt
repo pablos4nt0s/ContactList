@@ -15,6 +15,7 @@ class FormularioViewModel : ViewModel() {
     val isLoading: MutableLiveData<Boolean> = MutableLiveData()
 
     fun salvar(
+        id: String? = null,
         name: String,
         email: String,
         phoneWork: String,
@@ -22,13 +23,13 @@ class FormularioViewModel : ViewModel() {
     ) {
         isLoading.value = true
         val phone = Phone(work = phoneWork, mobile = phoneMobile)
-        val contact = Contact(name = name, email = email, phone = phone)
+        val contact = Contact(id = id, name = name, email = email, phone = phone)
         contactRepository.salvar(contact,
             onComplete = {
                 isLoading.value = false
                 responseStatus.value = ResponseStatus(
                     true,
-                    "Dado gravado com sucesso"
+                    "Success!"
                 )
             }, onError = {
                 isLoading.value = false

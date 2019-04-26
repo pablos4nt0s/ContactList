@@ -36,17 +36,34 @@ class ContactRepository {
     fun salvar(contact: Contact,
                onComplete: (Contact) -> Unit,
                onError: (Throwable?) -> Unit) {
-        getContactAPI()
-            .salvar(contact)
-            .enqueue(object : Callback<Contact>{
-                override fun onFailure(call: Call<Contact>, t: Throwable) {
-                    onError(t)
-                }
 
-                override fun onResponse(call: Call<Contact>, response: Response<Contact>) {
-                    onComplete(response.body()!!)
-                }
-            })
+        val idContact : String? = contact.id
+
+        if (idContact == null) {
+            getContactAPI()
+                .create(contact)
+                .enqueue(object : Callback<Contact>{
+                    override fun onFailure(call: Call<Contact>, t: Throwable) {
+                        onError(t)
+                    }
+
+                    override fun onResponse(call: Call<Contact>, response: Response<Contact>) {
+                        onComplete(response.body()!!)
+                    }
+                })
+        } else {
+            getContactAPI()
+                .update(idContact, contact)
+                .enqueue(object : Callback<Contact>{
+                    override fun onFailure(call: Call<Contact>, t: Throwable) {
+                        onError(t)
+                    }
+
+                    override fun onResponse(call: Call<Contact>, response: Response<Contact>) {
+                        onComplete(response.body()!!)
+                    }
+                })
+        }
     }
 
 

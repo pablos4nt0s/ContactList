@@ -38,8 +38,6 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.buscarTodos()
 
         fab.setOnClickListener { view ->
-            /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()*/
             startActivityForResult(
                 Intent(
                     this,
@@ -68,11 +66,18 @@ class MainActivity : AppCompatActivity() {
             it!!
         ) {
             Toast.makeText(this, it.id, Toast.LENGTH_SHORT).show()
+
+            val formularioIntent = Intent(this,
+                FormularioActivity::class.java)
+
+            formularioIntent.putExtra("CONTACT", it)
+
+            startActivityForResult(
+                formularioIntent, 1
+            )
         }
 
         rvContacts.layoutManager = LinearLayoutManager(this)
-        //rvContacts.layoutManager = GridLayoutManager(this, 3)
-
     }
 
     private var mensagemErroObserver = Observer<String> {

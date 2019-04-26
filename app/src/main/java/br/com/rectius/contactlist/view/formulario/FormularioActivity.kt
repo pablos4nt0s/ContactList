@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import br.com.rectius.contactlist.R
+import br.com.rectius.contactlist.model.Contact
 import br.com.rectius.contactlist.model.ResponseStatus
 import kotlinx.android.synthetic.main.activity_formulario.*
 import kotlinx.android.synthetic.main.loading.*
@@ -20,11 +21,26 @@ class FormularioActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_formulario)
 
+        var idContact : String? = null
+
+        val bundle : Bundle? = intent.extras
+        bundle?.let {
+            bundle.apply {
+                val contact = intent.getSerializableExtra("CONTACT") as Contact
+                idContact = contact?.id
+                inputName.editText?.setText(contact?.name)
+                inputEmail.editText?.setText(contact?.email)
+                inputPhoneWork.editText?.setText(contact?.phone?.work)
+                inputPhoneMobile.editText?.setText(contact?.phone?.mobile)
+            }
+        }
+
         formularioViewModel = ViewModelProviders.of(this)
             .get(FormularioViewModel::class.java)
 
         btSalvar.setOnClickListener {
             formularioViewModel.salvar(
+                idContact,
                 inputName.editText?.text.toString(),
                 inputEmail.editText?.text.toString(),
                 inputPhoneWork.editText?.text.toString(),
