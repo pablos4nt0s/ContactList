@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
             this,
             it!!
         ) {
-            Toast.makeText(this, it.id, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, it.name, Toast.LENGTH_SHORT).show()
 
             val formularioIntent = Intent(this,
                 FormularioActivity::class.java)
